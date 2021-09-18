@@ -1,71 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n,m,p,q,minn=INT_MAX;
-int a[51][51];
-bool book[51][51];
-// ???? 
-int dir[4][2]={ {0,1} ,   
-                 {1,0},    
-				{0,-1},    
-				{-1,0}  } ; 
-				
-void dfs(int x,int y,int step){
-	// ??????? 
-	//todo 
-	if(x == p && y == q){
-		if(step < minn) minn = step;
+int N,B,f[251],s[251],d[251];
+bool vis[251][251];
+
+int ans = INT_MAX;
+
+void dfs(int cur, int b){
+	if(vis[cur][b]){
 		return;
 	}
-	// ?? 
-	//todo 
-	if(step >= minn) return;
-	// ??????? 
-	for(int i=0; i<=3; i++){
-		//????????? 
-		//todo 
-		int nx = x + dir[i][0];
-		int ny = y + dir[i][1];
-        // ?????? 
-		//todo 
-		if(nx < 0 || ny < 0 || nx > n || ny > m || a[nx][ny] || book[nx][ny]) continue;
-		//todo 
-		book[nx][ny] = true;
-		dfs(nx, ny, step+1);
-		book[nx][ny] = false;
+	vis[cur][b] = true;
+	if(cur==N-1){
+		ans = min(ans,b);
+		return;
+	}
+	for(int i=cur+1; i<N && i-cur <= d[b]; i++){
+		if(f[i]<=s[b]){
+			dfs(i,b);
+		}
+		
+	}
+
+	for(int i=b+1; i<B; i++){
+		if(f[cur]<=s[i]){
+			dfs(cur,i);
+		}
 	}
 
 }
 
 int main(){
-	
-	int i ,j,startx,starty;
-	cin>>n>>m; 
-	//????
-	for(i=1;i<=n;i++)
-	    for(j=1;j<=m;j++)
-	        cin>>a[i][j];
-	
-	cin>>startx>>starty>>p>>q;
+	freopen("snowboots.in","r",stdin); 
+	freopen("snowboots.out","w",stdout);
 
-	book[startx][starty]=true;
-	dfs(startx,starty,0);
+    cin.sync_with_stdio(0);
+    cin.tie(0);
+    cout.sync_with_stdio(0);
+    cout.tie(0);
 	
-	cout<<minn<<endl;
+	cin>>N>>B;
+	for(int i=0; i<N; i++){
+		cin>>f[i];
+	}
+	for(int i=0; i<B; i++){
+		cin>>s[i]>>d[i];
+	}
+	dfs(0,0);
+	cout<<ans<<endl;
+	
 	return 0;
 }
-
-
-/*
-5 4
-0 0 1 0
-0 0 0 0
-0 0 1 0
-0 1 0 0
-0 0 0 1
-1 1 4 3
-
-??
-7
-*/
-
