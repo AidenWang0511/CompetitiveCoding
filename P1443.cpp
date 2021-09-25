@@ -14,9 +14,9 @@ int newRow,newColumn;
 int main(){
     cin.sync_with_stdio(0);
     cin.tie(0);
-    cin >> start.first >> start.second >> finish.first >> finish.second;
+    memset(dis, -1, sizeof(dis));
+    cin >> finish.first >> finish.second >> start.first >> start.second;
     q.push(start);
-    vis[start.first][start.second] = true;
     dis[start.first][start.second] = 0;
     while(!q.empty()){
         current = q.front();
@@ -24,15 +24,19 @@ int main(){
         for(int i=0; i<8; i++){
             newRow = current.first + steps[i][0];
             newColumn = current.second + steps[i][1];
-            if(newRow>=1 && newRow<=8 && newColumn>=1 && newColumn<=8 && !vis[newRow][newColumn]){
+            if(newRow>=1 && newRow<=finish.first && newColumn>=1 && newColumn<=finish.second && dis[newRow][newColumn] == -1){
                 q.push({newRow,newColumn});
-                vis[newRow][newColumn] = true;
                 dis[newRow][newColumn] = dis[current.first][current.second] + 1;
             }
         }
     }
-    cout<<dis[finish.first][finish.second];
+    for(int i=1; i<=finish.first; i++){
+        for(int j=1; j<=finish.second; j++){
+            cout<<left<<setw(5)<<dis[i][j];
+        }
+        cout<<"\n";
+    }
     return 0;
-    //cout<<left<<setw(5)<<n;
+    
 
 }
