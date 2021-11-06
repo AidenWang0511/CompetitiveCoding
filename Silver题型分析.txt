@@ -1,0 +1,23 @@
+Silver outline
+
+// data structure
+vector  		不确定数量的时候替代数组
+queue 		先进先出
+priority_queue 	可以排序的queue
+stack 		先进后出
+map<string int> 	绑定关系一对一
+set<int> 		去重
+
+// algorithm				适用题型
+1, BFS		 			最短路径  ||  连通块		
+2, Recursion / DFS				最优解问题-有多种选择的，尝试所有的可能
+3, Binary search 				最优解问题-满足某个条件的最值问题
+4, prefix/suffix sum				连续区间的问题
+5, topological sort  拓扑排序			有向图中环的问题（入度）
+6, graph storage and traveral 图的存储和遍历	邻接表
+7, Union Find 并查集				关系传递（朋友的朋友是朋友）
+8, binary tree				树
+9, bitwise operation 按位运算			>>1  相当于  /2
+10, greedy					最优解问题-个体相互独立的（第一步）
+11, 坐标离散化				坐标值特别大的，只关注位置关系，不在乎距离的
+12，2d prefix				最标系中一个矩形范围内点的个数
