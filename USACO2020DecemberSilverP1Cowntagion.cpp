@@ -1,31 +1,57 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//BFS function
-void bfs(vector<vector<int>>&adj,vector<int>&visited,int s){
-    queue<int>q;
-    q.push(s);
-    visited[s]=1;
-    while(!q.empty()){
-        int u=q.front();
-        q.pop();
-        for(int i=0;i<adj[u].size();i++){
-            if(visited[adj[u][i]]==0){
-                visited[adj[u][i]]=1;
-                q.push(adj[u][i]);
-            }
-        }
+int N;
+vector<int> adj[100001];
+bool vis[100001];
+
+int pow2(int num){
+    int counter = 1;
+    int days = 0;
+    while(counter<num){
+        counter*=2;
+        days++;
     }
+    return days;
 }
 
-
-int main(){
+int main()
+{
     cin.sync_with_stdio(0);
     cin.tie(0);
     cout.sync_with_stdio(0);
     cout.tie(0);
+	cin>>N;
 
-    
-    
+	for(int i=0;i<N-1;i++){
+        int a,b;
+		cin>>a>>b;
+		adj[a].push_back(b);
+        adj[b].push_back(a);
+	}
+	
+    queue<int> q;
+    q.push(1);
+    int ans=0;
+    while(!q.empty()){
+        int cur=q.front();
+        q.pop();
+        if(vis[cur]) continue;
+        vis[cur]=true;
+
+        if(!adj[cur].empty()){
+            int days = 1;
+            for(int x:adj[cur]){
+                if(!vis[x]){
+                    q.push(x);
+                    days++;
+                    ans++;
+                }
+            }
+            days = pow2(days);
+            ans+=days;
+        }
+    }
+    cout<<ans<<endl;
     return 0;
 }
