@@ -5,7 +5,7 @@ int main(){
     cin.sync_with_stdio(0);
     cin.tie(0);
 
-    int sum[20]={0};
+    double sum[20]={0};
     memset(sum,0,sizeof(sum));
     //3 nested forloop from 1 to 6
     for(int i=1; i<=6; i++){
@@ -16,13 +16,21 @@ int main(){
         }
     }
     //print sum[]
-    int total=0;
+    double total=0;
     for(int i=1; i<=18; i++){
         cout<<i<<" "<<sum[i]<<endl;
         total+=sum[i];
     }
-
-    cout<<"sum: "<<total<<endl;
+    double ans = 0;
+    for(int i=3; i<=18; i++){
+        if(i==18 || i==3){
+            ans+=(1.0000/total)*15.00000000;
+        }else if(i==9 || i==11){
+            ans+= (sum[i]/total)*2.00000000;
+        }
+    }
+    ans = ans-1;
+    cout<<ans<<endl;
 
     return 0;
 }
