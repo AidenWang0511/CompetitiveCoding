@@ -24,9 +24,9 @@ int main(){
     double ans = 0;
     for(int i=3; i<=18; i++){
         if(i==18 || i==3){
-            ans+=(1.0000/total)*15.00000000;
-        }else if(i==9 || i==11){
-            ans+= (sum[i]/total)*2.00000000;
+            ans+=(1.0000/total)*10.00000000;
+        }else if(i==5 || i==10 || i==15){
+            ans+= (sum[i]/total)*3.00000000;
         }
     }
     ans = ans-1;
